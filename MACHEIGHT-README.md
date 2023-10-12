@@ -28,6 +28,7 @@ You are required to address two challenges. The first task involves investigatin
 
     The unusual behavior is observed when other invalid commands like `/close` or `/report` are entered; the application does not hang for as long as it does with the `/show-chat-history` command. Can you rectify this reported issue and solve it? 
 
+---
 
 - [ ] Some of the unit tests are failing, your task is to run these tests and correct the ones that are failing.
 
