@@ -8,3 +8,5 @@ OLD*
 .venv
 venv
 .aider.*
+.aider*
+build/
