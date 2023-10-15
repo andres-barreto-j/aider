@@ -27,7 +27,7 @@ def show_messages(messages, title=None, functions=None):
         dump(functions)
 
 
-def word_distance(word1, word2):
+def word_distance_v1(word1, word2):
     """
     Calculates the minimum number of operations (insertion, deletion, or replacement) required to transform word1 into word2.
 
@@ -52,7 +52,32 @@ def word_distance(word1, word2):
             replace = 1 + helper(i - 1, j - 1)  # Replace a character
             return min(insert, delete, replace)
 
-    return helper(len(word1), len(word2))
+    output = helper(len(word1), len(word2))
+
+    print(f'Para {word1}, {word2}=> {output}')
+    
+    return output
 
 
+def word_distance(word1, word2):
+    m, n = len(word1), len(word2)
+
+    # Create a matrix to store the distances between substrings of word1 and word2.
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+
+    # Initialize the first row and column of the matrix.
+    for i in range(m + 1):
+        dp[i][0] = i
+    for j in range(n + 1):
+        dp[0][j] = j
+
+    # Fill in the matrix using dynamic programming.
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if word1[i - 1] == word2[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1]
+            else:
+                dp[i][j] = min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]) + 1
+
+    return dp[m][n]
 
